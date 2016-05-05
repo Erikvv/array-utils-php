@@ -1,7 +1,21 @@
 {
-	"description": "Array Utilities which should be built-in",
+	"description": "Array Utilities",
 	"name": "ev/array-utils",
+    "require" : {
+        "php" : ">=7.0"
+    },
 	"autoload": {
-		"psr-0": { "": "./src" }
+		"psr-0": {
+            "": "./src"
+        },
+        "files": [
+            "src/Ve/functions/categorize.php",
+            "src/Ve/functions/filter.php",
+            "src/Ve/functions/group.php",
+            "src/Ve/functions/map.php",
+            "src/Ve/functions/merge.php",
+            "src/Ve/functions/predicate.php",
+            "src/Ve/functions/unique.php"
+        ]
 	}
 }

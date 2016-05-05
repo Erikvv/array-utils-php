@@ -4,6 +4,11 @@ namespace Ve;
 
 use Iterator;
 
+/**
+ * Allows iteratation over multiple iterators in lockstep
+ * To use it on arrays, wrap the array in an SPL ArrayIterator
+ * Iteration stops when any one of the source iterators has run out
+ */
 class LockstepIterator implements Iterator
 {
     /** @var array */
@@ -17,8 +22,7 @@ class LockstepIterator implements Iterator
 
     public function current(): array
     {
-        // TODO: refactor using object map function
-        return array_map(function(Iterator $it) { return $it->current(); }, $this->iterators);
+        return map($this->iterators, 'current');
     }
 
     public function key(): int
@@ -29,15 +33,14 @@ class LockstepIterator implements Iterator
     public function next()
     {
         // TODO: refactor using object map function
-        array_map(function(Iterator $it) { $it->next(); }, $this->iterators);
+        return map($this->iterators, 'next');
         $this->counter++;
         return;
     }
 
     public function rewind()
     {
-        // TODO: refactor using rest of library
-        array_map(function(Iterator $it) { $it->rewind(); }, $this->iterators);
+        return map($this->iterators, 'rewind');
         $this->counter = 0;
         return;
     }
