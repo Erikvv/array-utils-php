@@ -4,13 +4,13 @@ namespace Ve;
 
 function doAllSatisfy($objects, $predicateMethod): bool
 {
-	foreach ($objects as $obj)
-	{
-		if (! $obj->$predicateMethod()) {
-			return false;
-		}
-	}
-	return true;
+    foreach ($objects as $obj)
+    {
+        if (! $obj->$predicateMethod()) {
+            return false;
+        }
+    }
+    return true;
 }
 
 
@@ -19,9 +19,9 @@ function doAllSatisfy($objects, $predicateMethod): bool
  */
 function array_keys_exist(array $data, ...$requiredKeys): bool
 {
-	$commonKeys = array_intersect( array_keys($data), $requiredKeys);
+    $commonKeys = array_intersect( array_keys($data), $requiredKeys);
 
-	return array_diff($commonKeys, $requiredKeys) === [];
+    return array_diff($commonKeys, $requiredKeys) === [];
 }
 
 /*
@@ -30,13 +30,13 @@ function array_keys_exist(array $data, ...$requiredKeys): bool
  */
 function u_in_array($array, $outsideElement, callable $equals): bool
 {
-	foreach($array as $element)
-	{
-		if( call_user_func($equals, $element, $outsideElement) === true)
-		{
-			return true;
-		}
-	}
+    foreach($array as $element)
+    {
+        if( call_user_func($equals, $element, $outsideElement) === true)
+        {
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }

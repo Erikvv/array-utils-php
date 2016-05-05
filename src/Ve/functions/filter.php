@@ -17,15 +17,15 @@ namespace Ve;
  */
 function filter($objects, string $method): array
 {
-	$result = [];
-	foreach ($objects as $obj)
-	{
-		if (call_user_func([$obj, $method]))
-		{
-			$result[] = $obj;
-		}
-	}
-	return $result;
+    $result = [];
+    foreach ($objects as $obj)
+    {
+        if (call_user_func([$obj, $method]))
+        {
+            $result[] = $obj;
+        }
+    }
+    return $result;
 }
 
 /**
@@ -33,15 +33,15 @@ function filter($objects, string $method): array
  */
 function reject($objects, string $method): array
 {
-	$result = [];
-	foreach ($objects as $obj)
-	{
-		if (! call_user_func([$obj, $method]))
-		{
-			$result[] = $obj;
-		}
-	}
-	return $result;
+    $result = [];
+    foreach ($objects as $obj)
+    {
+        if (! call_user_func([$obj, $method]))
+        {
+            $result[] = $obj;
+        }
+    }
+    return $result;
 }
 
 /**
@@ -49,14 +49,14 @@ function reject($objects, string $method): array
  */
 function find($objects, callable $fn)
 {
-	foreach ($objects as $obj)
-	{
-		if (call_user_func($fn, $obj))
-		{
-			return $obj;
-		}
-	}
-	throw new \LengthException;
+    foreach ($objects as $obj)
+    {
+        if (call_user_func($fn, $obj))
+        {
+            return $obj;
+        }
+    }
+    throw new \LengthException;
 }
 
 
@@ -66,14 +66,14 @@ function find($objects, callable $fn)
  */
 function findWhere($objects, array $keyValuePair)
 {
-	$resultCollection = where($objects, $keyValuePair);
+    $resultCollection = where($objects, $keyValuePair);
 
-	if (count($resultCollection) !== 1)
-	{
-		throw new \LengthException;
-	}
+    if (count($resultCollection) !== 1)
+    {
+        throw new \LengthException;
+    }
 
-	return $resultCollection[0];
+    return $resultCollection[0];
 }
 
 /**
@@ -85,47 +85,47 @@ function findWhere($objects, array $keyValuePair)
  */
 function where($objects, array $keyValuePair): array
 {
-	$property = array_keys($keyValuePair)[0];
-	$value = array_values($keyValuePair)[0];
+    $property = array_keys($keyValuePair)[0];
+    $value = array_values($keyValuePair)[0];
 
-	$result = [];
+    $result = [];
 
-	foreach ($objects as $obj)
-	{
-		if (is_object($obj))
-		{
-			if (property_exists($obj, $property))
-			{
-				if ($obj->$property === $value)
-				{
-					$result[] = $obj;
-				}
-			}
-			elseif (method_exists($obj, $property))
-			{
-				if (call_user_func([$obj, $method]) === $value)
-				{
-					$result[] = $obj;
-				}
-			}
-			else
-			{
-				throw new \InvalidArgumentException;
-			}
-		}
-		elseif (is_array($obj))
-		{
-			if ($obj[$property] === $value)
-			{
-				$result[] = $obj;
-			}
-		}
-		else
-		{
-			throw new \InvalidArgumentException;
-		}
-	}
-	return $result;
+    foreach ($objects as $obj)
+    {
+        if (is_object($obj))
+        {
+            if (property_exists($obj, $property))
+            {
+                if ($obj->$property === $value)
+                {
+                    $result[] = $obj;
+                }
+            }
+            elseif (method_exists($obj, $property))
+            {
+                if (call_user_func([$obj, $method]) === $value)
+                {
+                    $result[] = $obj;
+                }
+            }
+            else
+            {
+                throw new \InvalidArgumentException;
+            }
+        }
+        elseif (is_array($obj))
+        {
+            if ($obj[$property] === $value)
+            {
+                $result[] = $obj;
+            }
+        }
+        else
+        {
+            throw new \InvalidArgumentException;
+        }
+    }
+    return $result;
 }
 
 /**
@@ -137,45 +137,45 @@ function where($objects, array $keyValuePair): array
  */
 function whereNot($objects, array $keyValuePair): array
 {
-	$property = array_keys($keyValuePair)[0];
-	$value = array_values($keyValuePair)[0];
+    $property = array_keys($keyValuePair)[0];
+    $value = array_values($keyValuePair)[0];
 
-	$result = [];
+    $result = [];
 
-	foreach ($objects as $obj)
-	{
-		if (is_object($obj))
-		{
-			if (property_exists($obj, $property))
-			{
-				if ($obj->$property !== $value)
-				{
-					$result[] = $obj;
-				}
-			}
-			elseif (method_exists($obj, $property))
-			{
-				if (call_user_func([$obj, $method]) !== $value)
-				{
-					$result[] = $obj;
-				}
-			}
-			else
-			{
-				throw new \InvalidArgumentException;
-			}
-		}
-		elseif (is_array($obj))
-		{
-			if ($obj[$property] !== $value)
-			{
-				$result[] = $obj;
-			}
-		}
-		else
-		{
-			throw new \InvalidArgumentException;
-		}
-	}
-	return $result;
+    foreach ($objects as $obj)
+    {
+        if (is_object($obj))
+        {
+            if (property_exists($obj, $property))
+            {
+                if ($obj->$property !== $value)
+                {
+                    $result[] = $obj;
+                }
+            }
+            elseif (method_exists($obj, $property))
+            {
+                if (call_user_func([$obj, $method]) !== $value)
+                {
+                    $result[] = $obj;
+                }
+            }
+            else
+            {
+                throw new \InvalidArgumentException;
+            }
+        }
+        elseif (is_array($obj))
+        {
+            if ($obj[$property] !== $value)
+            {
+                $result[] = $obj;
+            }
+        }
+        else
+        {
+            throw new \InvalidArgumentException;
+        }
+    }
+    return $result;
 }

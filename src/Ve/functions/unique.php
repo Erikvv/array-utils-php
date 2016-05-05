@@ -8,21 +8,21 @@ namespace Ve;
  */
 function u_array_unique(array $array, callable $equals): array
 {
-	$result = [];
+    $result = [];
 
-	foreach($array as $row)
-	{
-		if( u_in_array($result, $row, $equals) )
-		{
-			continue;
-		}
-		else
-		{
-			$result[] = $row;
-		}
-	}
+    foreach($array as $row)
+    {
+        if( u_in_array($result, $row, $equals) )
+        {
+            continue;
+        }
+        else
+        {
+            $result[] = $row;
+        }
+    }
 
-	return $result;
+    return $result;
 }
 
 /*
@@ -33,12 +33,12 @@ function u_array_unique(array $array, callable $equals): array
  */
 function array_unique_property(array $objects, $property): array
 {
-	$result = [];
+    $result = [];
 
-	foreach($objects as $obj)
-	{
-		$result[$obj->$property] = $obj;
-	}
+    foreach($objects as $obj)
+    {
+        $result[$obj->$property] = $obj;
+    }
 
-	return array_values($result);
+    return array_values($result);
 }

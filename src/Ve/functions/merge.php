@@ -11,23 +11,23 @@ namespace Ve;
  */
 function mergePreserveKeys(array $arr1, array $arr2): array
 {
-	$allKeys = array_unique(array_keys($arr1) + array_keys($arr2));
+    $allKeys = array_unique(array_keys($arr1) + array_keys($arr2));
 
-	$result = [];
+    $result = [];
 
-	foreach ($allKeys as $key)
-	{
-		if (array_key_exists($key, $arr2))
-		{
-			$result[$key] = $arr2[$key];
-		}
-		else
-		{
-			$result[$key] = $arr1[$key];
-		}
-	}
+    foreach ($allKeys as $key)
+    {
+        if (array_key_exists($key, $arr2))
+        {
+            $result[$key] = $arr2[$key];
+        }
+        else
+        {
+            $result[$key] = $arr1[$key];
+        }
+    }
 
-	return $result;
+    return $result;
 }
 
 /**
@@ -39,20 +39,20 @@ function mergePreserveKeys(array $arr1, array $arr2): array
  */
 function flatten($input): array
 {
-	$result = [];
+    $result = [];
 
-	foreach ($input as $value)
-	{
-		if (is_array($value) || $value instanceof \Traversable)
-		{
-			$result = array_merge($result, flatten($value));
-		}
-		else
-		{
-			$result[] = $value;
-		}
-	}
-	return $result;
+    foreach ($input as $value)
+    {
+        if (is_array($value) || $value instanceof \Traversable)
+        {
+            $result = array_merge($result, flatten($value));
+        }
+        else
+        {
+            $result[] = $value;
+        }
+    }
+    return $result;
 }
 
 function numberOfColumns(array $table): int

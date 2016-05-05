@@ -52,14 +52,14 @@ function pluck($objects, string $property): array
  */
 function mapWithKey(array $array, callable $fn)
 {
-	$result = [];
+    $result = [];
 
-	foreach ($array as $key => $value)
-	{
-		$result += $fn($value, $key);
-	}
+    foreach ($array as $key => $value)
+    {
+        $result += $fn($value, $key);
+    }
 
-	return $result;
+    return $result;
 }
 
 /**
@@ -68,8 +68,8 @@ function mapWithKey(array $array, callable $fn)
  */
 function buildAssoc(array $objects, string $keyProperty, string $valueProperty): array
 {
-	$keys   = pluck($objects, $keyProperty);
-	$values = pluck($objects, $valueProperty);
+    $keys   = pluck($objects, $keyProperty);
+    $values = pluck($objects, $valueProperty);
 
-	return array_combine($keys, $values);
+    return array_combine($keys, $values);
 }

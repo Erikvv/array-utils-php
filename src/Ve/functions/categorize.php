@@ -13,34 +13,34 @@ namespace Ve;
  * @param string $collectionName key under which the objects will be stored in the category
  *
  * @return [
- * 		[
- * 			$propertyName   => $propertyValue
- * 			$collectionName => $categorizedObjects
- * 		]
- * 		...
+ *      [
+ *          $propertyName   => $propertyValue
+ *          $collectionName => $categorizedObjects
+ *      ]
+ *      ...
  * ]
  */
 function categorizeByPropertyIdentity($objects, string $property, string $collectionName = 'objects'): array
 {
-	$result = [];
+    $result = [];
 
-	foreach ($objects as $obj)
-	{
-		foreach ($result as &$category)
-		{
-			if ($category[$property] === $obj->$property)
-			{
+    foreach ($objects as $obj)
+    {
+        foreach ($result as &$category)
+        {
+            if ($category[$property] === $obj->$property)
+            {
                 // add to existing category
-				$category[$collectionName][] = $obj;
-				continue 2;
-			}
-		}
+                $category[$collectionName][] = $obj;
+                continue 2;
+            }
+        }
         // create a new category
-		$result[] = [
-			$property       => $obj->$property,
-			$collectionName => [$obj]
-		];
-	}
+        $result[] = [
+            $property       => $obj->$property,
+            $collectionName => [$obj]
+        ];
+    }
 
-	return $result;
+    return $result;
 }
