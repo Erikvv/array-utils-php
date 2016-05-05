@@ -1,0 +1,7 @@
+{
+	"description": "Array Utilities which should be built-in",
+	"name": "ev/array-utils",
+	"autoload": {
+		"psr-0": { "": "./src" }
+	}
+}
