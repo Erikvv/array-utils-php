@@ -66,10 +66,22 @@ function mapWithKey(array $array, callable $fn)
  * Helper to build and associative array of properties from a collection of objects,
  * e.g. from object ID's to object properties
  */
-function buildAssoc(array $objects, string $keyProperty, string $valueProperty): array
+function buildMap(array $objects, string $keyProperty, string $valueProperty): array
 {
     $keys   = pluck($objects, $keyProperty);
     $values = pluck($objects, $valueProperty);
+
+    return array_combine($keys, $values);
+}
+
+/**
+ * Helper to build and associative array of properties from a collection of objects,
+ * e.g. from object ID's to object properties
+ */
+function buildMapUsingGetters($objects, string $keyGetter, string $valueGetter): array
+{
+    $keys   = map($objects, $keyGetter);
+    $values = map($objects, $valueGetter);
 
     return array_combine($keys, $values);
 }
