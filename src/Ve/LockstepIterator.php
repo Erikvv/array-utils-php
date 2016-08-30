@@ -27,7 +27,7 @@ class LockstepIterator implements Iterator
 
     public function key(): int
     {
-        return $counter;
+        return $this->counter;
     }
 
     public function next()
