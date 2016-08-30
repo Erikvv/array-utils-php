@@ -32,15 +32,14 @@ class LockstepIterator implements Iterator
 
     public function next()
     {
-        // TODO: refactor using object map function
-        return map($this->iterators, 'next');
+        map($this->iterators, 'next');
         $this->counter++;
         return;
     }
 
     public function rewind()
     {
-        return map($this->iterators, 'rewind');
+        map($this->iterators, 'rewind');
         $this->counter = 0;
         return;
     }
