@@ -84,3 +84,22 @@ function groupUntil($list, callable $predicate): array
 
     return $groups;
 }
+
+function groupUntilByEquality(array $list, callable $equals)
+{
+    $list = array_values($list);
+
+    $groups = [];
+    $groupIndex = -1;
+
+    foreach ($list as $i => $item) {
+        if ($i !== 0 && $equals($list[$i - 1], $item)) {
+            $groups[$groupIndex][] = $item;
+        } else {
+            $groupIndex++;
+            $groups[$groupIndex] = [$item];
+        }
+    }
+
+    return $groups;
+}
