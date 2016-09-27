@@ -66,3 +66,21 @@ function groupByEquality($list, callable $equals): array
     }
     return $result;
 }
+
+protected function groupUntil($collection, callable $predicate)
+{
+    $groups = [];
+    $groupIndex = -1;
+
+    foreach ($collection as $item) {
+        if ($predicate($item)) {
+            // create new group
+            $groupIndex++;
+            $groups[$groupIndex] =  [];
+        }
+        // append to group
+        $groups[$groupIndex][] = $item;
+    }
+
+    return $groups;
+}
