@@ -67,7 +67,7 @@ function groupByEquality($list, callable $equals): array
     return $result;
 }
 
-function groupUntil($list, callable $predicate)
+function groupUntil($list, callable $predicate): array
 {
     $groups = [];
     $groupIndex = -1;
