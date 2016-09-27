@@ -67,12 +67,12 @@ function groupByEquality($list, callable $equals): array
     return $result;
 }
 
-protected function groupUntil($collection, callable $predicate)
+function groupUntil($list, callable $predicate)
 {
     $groups = [];
     $groupIndex = -1;
 
-    foreach ($collection as $item) {
+    foreach ($list as $item) {
         if ($predicate($item)) {
             // create new group
             $groupIndex++;
