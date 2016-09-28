@@ -85,6 +85,30 @@ function groupUntil($list, callable $predicate): array
     return $groups;
 }
 
+protected function groupUntilInclusive($list, callable $predicate)
+{
+    $groups = [];
+
+    if (count($list) > 0) {
+        // create the first group
+        $groups[] =  [];
+    }
+
+    $groupIndex = 0;
+    foreach ($list as $item) {
+        // append to group
+        $groups[$groupIndex][] = $item;
+
+        if ($predicate($item)) {
+            // create new group
+            $groupIndex++;
+            $groups[$groupIndex] =  [];
+        }
+    }
+
+    return $groups;
+}
+
 function groupUntilByEquality(array $list, callable $equals)
 {
     $list = array_values($list);
