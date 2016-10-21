@@ -44,6 +44,32 @@ function reject($objects, string $method): array
     return $result;
 }
 
+function filterRecursive($array) 
+{ 
+    foreach ($input as &$value) 
+    { 
+        if (is_array($value)) 
+        { 
+            $value = array_filter_recursive($value); 
+        } 
+    } 
+
+    return array_filter($input); 
+}
+
+function filterRecursiveWithCallback($array, callable $callback) 
+{ 
+    foreach ($input as &$value) 
+    { 
+        if (is_array($value)) 
+        { 
+            $value = array_filter_recursive($value, $callback); 
+        } 
+    } 
+
+    return array_filter($input, $callback); 
+} 
+
 /**
  * logic like filter but is guaranteed to return a single result, else an exeption is thrown
  */
