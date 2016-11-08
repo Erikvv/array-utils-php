@@ -85,6 +85,9 @@ function groupUntil($list, callable $predicate): array
     return $groups;
 }
 
+/**
+ * Can be used to detect e.g. sentinel values where the sentinal indicates that this is the last element of the group
+ */
 protected function groupUntilInclusive($list, callable $predicate)
 {
     $groups = [];
@@ -102,7 +105,6 @@ protected function groupUntilInclusive($list, callable $predicate)
         if ($predicate($item)) {
             // create new group
             $groupIndex++;
-            $groups[$groupIndex] =  [];
         }
     }
 
