@@ -9,7 +9,7 @@ function headTail(array $list) {
     assert(count($list) > 0);
     
     return [
-        $array[0],
-        array_slice($array, 1),
+        $list[0],
+        array_slice($list, 1),
     ];
 }
