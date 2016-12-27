@@ -67,6 +67,9 @@ function groupByEquality($list, callable $equals): array
     return $result;
 }
 
+/**
+ * Can be used to detect e.g. sentinel values where the sentinal indicates that this is the FIRST element of the group
+ */
 function groupUntil($list, callable $predicate): array
 {
     $groups = [];
@@ -86,7 +89,7 @@ function groupUntil($list, callable $predicate): array
 }
 
 /**
- * Can be used to detect e.g. sentinel values where the sentinal indicates that this is the last element of the group
+ * Can be used to detect e.g. sentinel values where the sentinal indicates that this is the LAST element of the group
  */
 protected function groupUntilInclusive($list, callable $predicate)
 {
@@ -125,6 +128,35 @@ function groupUntilByEquality(array $list, callable $equals)
             $groupIndex++;
             $groups[$groupIndex] = [$item];
         }
+    }
+
+    return $groups;
+}
+
+function groupUntilGroupInvalid($list, callable $isValidGroup)
+{
+    $groups = [];
+
+    if (count($list) > 0) {
+        // create the first group
+        $groups[] =  [];
+    }
+
+    $groupIndex = 0;
+
+    foreach ($list as $item) {
+        $appended = array_merge($groups[$groupIndex], [$item]);
+        if ($isValidGroup($appended)) {
+            $groups[$groupIndex] = $appended;
+            continue;
+        }
+
+        if (count($appended) === 1) {
+            throw new \RuntimeException('groupUntilGroupInvalid: cannot group this element because it forms an invalid group on its own');
+        }
+
+        $groupIndex++;
+        $groups[$groupIndex] = [$item];
     }
 
     return $groups;
