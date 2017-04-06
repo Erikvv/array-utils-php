@@ -1,6 +1,6 @@
 {
     "description": "Array Utilities",
-    "name": "ev/array-utils",
+    "name": "ve/array-utils",
     "require" : {
         "php" : ">=7.0"
     },
